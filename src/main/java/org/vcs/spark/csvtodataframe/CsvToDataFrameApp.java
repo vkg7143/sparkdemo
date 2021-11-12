@@ -4,6 +4,8 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
+import static org.apache.spark.sql.functions.col;
+
 /**
  * CSV ingestion in a dataframe.
  *
@@ -38,6 +40,12 @@ class CsvToDataframeApp {
                 .load("data/books.csv");
 
         // Shows at most 5 rows from the dataframe
-        df.show(5);
+       // df.show(5);
+       // df.printSchema();
+        //df.select(col("id"), col("releaseDate")).show();
+        //df.filter(col("id").gt(18)).show();
+        df.groupBy("authorId").count();
     }
+
+
 }
