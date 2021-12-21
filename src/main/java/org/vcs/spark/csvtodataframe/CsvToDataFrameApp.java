@@ -4,7 +4,7 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
-import static org.apache.spark.sql.functions.col;
+import static org.apache.spark.sql.functions.*;
 
 /**
  * CSV ingestion in a dataframe.
@@ -37,14 +37,24 @@ class CsvToDataframeApp {
         // dataframe
         Dataset<Row> df = spark.read().format("csv")
                 .option("header", "true")
-                .load("data/books.csv");
+                .load("data/books.csv")
+                        .filter("id<2");
 
+        System.out.println("latest data\n");
+        //df.sort(df.col("authorId").desc()).show();
         // Shows at most 5 rows from the dataframe
-       // df.show(5);
+       df.show(5,70);
        // df.printSchema();
         //df.select(col("id"), col("releaseDate")).show();
         //df.filter(col("id").gt(18)).show();
-        df.groupBy("authorId").count();
+        df.createOrReplaceTempView("people");
+
+        Dataset<Row> sqlDF = spark.sql("SELECT * FROM people");
+
+        //sqlDF.show();
+        Dataset<Row> rowDataset = df.withColumn("movie details",concat(df.col("title"), lit("            "),df.col("releaseDate")));
+
+        //rowDataset.show();
     }
 
 

@@ -28,6 +28,26 @@
             <artifactId>spark-sql_2.11</artifactId>
             <version>2.2.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.derby/derbynet -->
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbynet</artifactId>
+            <version>10.6.2.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.derby/derbyclient -->
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbyclient</artifactId>
+            <version>10.11.1.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.26</version>
+        </dependency>
+
+
     </dependencies>
 
 </project>
